@@ -5,8 +5,8 @@ show a detect → act → hand off flow on Teradata Vantage.
 
 | Skill | What it does | Slash command |
 |-------|--------------|---------------|
-| [`hm-bulk-load-consolidation`](./hm-bulk-load-consolidation/SKILL.md) | Finds the JDBC16 single-row INSERT pattern on the claims staging table, measures the AMP skew and waste, recommends TPT FastLoad with Load Isolation, logs the job action, then hands off to OA Integrity. | `/hm-bulk-load-consolidation` |
-| [`hm-oa-integrity`](./hm-oa-integrity/SKILL.md) | Scans the latest Outcome Advisor ETL run (`hm_vt_summary`) for cost-per spikes, participant drops, missing programs and rank inversions. Writes alerts and gives a GREEN / YELLOW / RED decision for actuarial, proposal and reporting use. | `/hm-oa-integrity` |
+| [`hm-bulk-load-consolidation`](./skill-domains/general/hm-bulk-load-consolidation/SKILL.md) | Finds the JDBC16 single-row INSERT pattern on the claims staging table, measures the AMP skew and waste, recommends TPT FastLoad with Load Isolation, logs the job action, then hands off to OA Integrity. | `/hm-bulk-load-consolidation` |
+| [`hm-oa-integrity`](./skill-domains/general/hm-oa-integrity/SKILL.md) | Scans the latest Outcome Advisor ETL run (`hm_vt_summary`) for cost-per spikes, participant drops, missing programs and rank inversions. Writes alerts and gives a GREEN / YELLOW / RED decision for actuarial, proposal and reporting use. | `/hm-oa-integrity` |
 
 ## Requirements
 
@@ -27,8 +27,10 @@ Both skills show the exact INSERT and wait for you to confirm before writing to 
 
 ## Bundle layout
 
+Skills follow the Tera repo layout, `skill-domains/general/<skill-name>/`:
+
 ```
-<skill>/
+skill-domains/general/<skill>/
   SKILL.md              frontmatter (triggers, constraints, output format) + procedures
   references/           table schemas, alert rules
   assets/sql/toolkit.sql  the named queries the procedures run

@@ -5,7 +5,15 @@ description: 'Scan Outcome Advisor ETL output for financial data quality anomali
 domain: data
 metadata:
   author: brian.solomon
-  version: 1.0.0
+  version: "1.0.0"
+tags:
+  - teradata
+  - highmark
+  - healthcare
+  - outcome-advisor
+  - data-quality
+  - financial-integrity
+  - agentops
 trigger:
   mode: HYBRID
   slash_commands: ['/hm-oa-integrity']

@@ -5,7 +5,15 @@ description: 'Monitor DBQL patterns to detect inefficient single-row INSERT work
 domain: data
 metadata:
   author: brian.solomon
-  version: 1.0.0
+  version: "1.0.0"
+tags:
+  - teradata
+  - highmark
+  - healthcare
+  - dbql
+  - bulk-load
+  - tpt-fastload
+  - agentops
 trigger:
   mode: HYBRID
   slash_commands: ['/hm-bulk-load-consolidation']
