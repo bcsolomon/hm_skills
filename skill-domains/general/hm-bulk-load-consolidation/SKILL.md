@@ -86,7 +86,9 @@ Before executing log_tpt_job_action (the INSERT statement), display the exact SQ
 - TPT script name and whether Load Isolation was enabled
 - Agent action description
 
-Only proceed after user confirms.
+Only proceed after user confirms. Use the INSERT ... SELECT form from toolkit.sql exactly (no subquery in VALUES; cast CURRENT_TIMESTAMP to TIMESTAMP(0)).
+
+If the Teradata MCP session is read-only (DML blocked), do not retry. Output the INSERT statements as a pending write queue, using the INSERT ... SELECT form from toolkit.sql, for an operator to run from a write-enabled session.
 
 ## Procedure: Hand Off to OA Integrity
 

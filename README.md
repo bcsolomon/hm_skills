@@ -18,12 +18,15 @@ show a detect → act → hand off flow on Teradata Vantage.
 |-------|------|---------|
 | `hm_eai_dsbdd_rpm` | 7,000 | Bulk load (claims staging) |
 | `hm_appasl_load_log` | 1,000 | Bulk load (DBQL-style INSERT capture, 175,874 statements) |
-| `hm_bulk_load_job_status` | 0, written by the skill | Bulk load (job log) |
+| `hm_bulk_load_job_status` | 1 seeded agent job record | Bulk load (job log) |
 | `hm_vt_summary` | 2,100 (30 programs × 70 ETL runs) | OA integrity |
 | `hm_oa_program_rules` | 50 | OA integrity (thresholds, owners) |
-| `hm_oa_integrity_alerts` | 0, written by the skill | OA integrity (alerts) |
+| `hm_oa_integrity_alerts` | 6 seeded HIGH alerts for ETL-OA-00070 | OA integrity (alerts) |
 
-Both skills show the exact INSERT and wait for you to confirm before writing to the two log tables.
+Both skills show the exact INSERT and wait for you to confirm before writing to the two log tables. The Tera MCP session is
+read-only, so in the demo the skills output the INSERTs as a pending write queue. The rows that queue would write were
+pre-loaded from a write-enabled session (1 job record, 6 alerts), so the job-history and open-alerts queries show the
+agent's output as if it had been written.
 
 ## Bundle layout
 
@@ -61,7 +64,7 @@ SET log_timestamp = b.log_timestamp,
 WHERE l.log_id = b.log_id;
 ```
 
-To reset between demo runs, clear what the skills wrote:
+To clear the seeded agent output (for example, to reseed it with the skills' INSERT ... SELECT statements):
 
 ```sql
 DELETE FROM DATA_SCIENTIST.hm_bulk_load_job_status;

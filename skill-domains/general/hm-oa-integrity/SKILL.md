@@ -101,6 +101,8 @@ Output: alert_id, alert_timestamp, run_date, etl_run_id, oa_name, oa_category, a
 
 For each HIGH severity finding not already alerted, compose and display the INSERT statement for `write_integrity_alert`. Get explicit user confirmation before executing.
 
+Use the INSERT ... SELECT form from toolkit.sql exactly (no subquery in VALUES; cast CURRENT_TIMESTAMP to TIMESTAMP(0); DATE literals for run_date). Run one INSERT per statement, in sequence. If the Teradata MCP session is read-only (DML blocked), do not retry. Output the INSERT statements as a pending write queue, using the INSERT ... SELECT form from toolkit.sql, for an operator to run from a write-enabled session.
+
 Alert fields: alert_id (auto), alert_timestamp (CURRENT_TIMESTAMP), run_date, etl_run_id, oa_id, oa_name, oa_category, alert_type (one of six types below), metric_name, current_value, prior_value, pct_change, rule_id (FK to hm_oa_program_rules), severity_level, alert_status='OPEN', agent_finding (plain English), recommended_action (next step), assigned_to (from program rules), review_due_date (CURRENT_DATE + 5 days), created_by_agent='OA_INTEGRITY_AGENT_V1'.
 
 ## Decision Logic: Six Alert Types

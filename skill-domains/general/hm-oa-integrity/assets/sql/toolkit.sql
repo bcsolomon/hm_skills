@@ -223,10 +223,14 @@ ORDER BY
 --   <RECOMMENDED_ACTION> = next step for reviewer (VARCHAR)
 --   <ASSIGNED_TO>        = business_owner or finance_owner from rules (VARCHAR)
 -- ============================================================================
-INSERT INTO DATA_SCIENTIST.hm_oa_integrity_alerts VALUES (
-    (SELECT COALESCE(MAX(alert_id),0)+1 FROM DATA_SCIENTIST.hm_oa_integrity_alerts),
-    CURRENT_TIMESTAMP,
-    '<RUN_DATE>',
+-- Teradata rules: no subquery inside VALUES, so use INSERT ... SELECT; timestamp columns are TIMESTAMP(0),
+-- so CURRENT_TIMESTAMP must be cast (plain CURRENT_TIMESTAMP raises Error 7454 DateTime field overflow);
+-- use DATE 'YYYY-MM-DD' literals for DATE columns. Run one INSERT per statement, sequentially (MAX+1 ids).
+INSERT INTO DATA_SCIENTIST.hm_oa_integrity_alerts
+SELECT
+    COALESCE(MAX(alert_id),0)+1,
+    CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)),
+    DATE '<RUN_DATE>',
     '<ETL_RUN_ID>',
     <OA_ID>,
     '<OA_NAME>',
@@ -235,15 +239,15 @@ INSERT INTO DATA_SCIENTIST.hm_oa_integrity_alerts VALUES (
     '<METRIC_NAME>',
     <CURRENT_VALUE>,
     <PRIOR_VALUE>,
-    <PCT_CHANGE>,
-    <RULE_ID>,
+    <PCT_CHANGE>,            -- ratio, e.g. -0.7990 (DECIMAL(8,4))
+    <RULE_ID>,               -- or NULL
     '<SEVERITY>',
     'OPEN',
-    '<AGENT_FINDING>',
-    '<RECOMMENDED_ACTION>',
+    '<AGENT_FINDING>',       -- max 600 chars
+    '<RECOMMENDED_ACTION>',  -- max 400 chars
     '<ASSIGNED_TO>',
     CURRENT_DATE + 5,
     NULL,
     NULL,
     'OA_INTEGRITY_AGENT_V1'
-);
+FROM DATA_SCIENTIST.hm_oa_integrity_alerts;

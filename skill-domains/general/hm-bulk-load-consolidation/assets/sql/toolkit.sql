@@ -81,8 +81,11 @@ ORDER BY start_timestamp DESC;
 -- name: log_tpt_job_action
 -- purpose: Log a new job record when the agent recommends or simulates a TPT FastLoad
 -- writes to hm_bulk_load_job_status with metadata: job name, rows, timing, AMP reduction, TPT script, Load Isolation flag
-INSERT INTO DATA_SCIENTIST.hm_bulk_load_job_status VALUES (
-    (SELECT COALESCE(MAX(job_id),0)+1 FROM DATA_SCIENTIST.hm_bulk_load_job_status),
+-- Teradata rules: no subquery inside VALUES, so use INSERT ... SELECT; timestamp columns are TIMESTAMP(0),
+-- so CURRENT_TIMESTAMP must be cast (plain CURRENT_TIMESTAMP raises Error 7454 DateTime field overflow).
+INSERT INTO DATA_SCIENTIST.hm_bulk_load_job_status
+SELECT
+    COALESCE(MAX(job_id),0)+1,
     'BLJ-AGENT-JDBC16',
     'JDBC16',
     'hm_eai_dsbdd_rpm',
@@ -91,13 +94,13 @@ INSERT INTO DATA_SCIENTIST.hm_bulk_load_job_status VALUES (
     'BULK_LOAD_AGENT_V1',
     'DBQL: 172k+ single-row INSERTs detected from JDBC16 App-Medium workload in 4-hour window',
     7000, 7000, 0,
-    CURRENT_TIMESTAMP,
-    CURRENT_TIMESTAMP + INTERVAL '3' MINUTE,
+    CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)),
+    CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0)) + INTERVAL '3' MINUTE,
     187.4,
     4.821, 0.287, 94.05,
     'tpt_eai_dsbdd_rpm_fastload.tpt',
     1,
     NULL,
-    'Agent triggered TPT FastLoad — replaced JDBC16 single-row INSERT pattern. Load Isolation enabled: reads unblocked during load.',
-    CURRENT_TIMESTAMP
-);
+    'Agent triggered TPT FastLoad - replaced JDBC16 single-row INSERT pattern. Load Isolation enabled: reads unblocked during load.',
+    CAST(CURRENT_TIMESTAMP(0) AS TIMESTAMP(0))
+FROM DATA_SCIENTIST.hm_bulk_load_job_status;
