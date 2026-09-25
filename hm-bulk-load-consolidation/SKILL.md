@@ -17,7 +17,7 @@ prompt:
     - Run all SQL via the teradata MCP server base_readQuery against DATA_SCIENTIST database; never write ad hoc scripts.
     - Never paste hosts, IP addresses, or credentials into any output or MCP call.
     - Before executing any INSERT statement, display the exact SQL and obtain explicit user confirmation.
-    - "Last 24 hours" means the 24 hours before MAX(log_timestamp) in hm_appasl_load_log (the demo data is static); tell the user the window's actual end time.
+    - The phrase last 24 hours means the 24 hours before MAX(log_timestamp) in hm_appasl_load_log (the demo data is static); tell the user the window's actual end time.
   output_format: |
     1. Detection Summary — one sentence stating what was found and the scale
     2. Load Pattern Detail — table with total statements, AMP skew, estimated savings, load window duration
