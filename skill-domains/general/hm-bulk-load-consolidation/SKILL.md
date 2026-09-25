@@ -27,12 +27,7 @@ prompt:
     - Before executing any INSERT statement, display the exact SQL and obtain explicit user confirmation.
     - The phrase last 24 hours means the 24 hours before MAX(log_timestamp) in hm_appasl_load_log (the demo data is static); tell the user the window's actual end time.
   output_format: |
-    1. Detection Summary — one sentence stating what was found and the scale
-    2. Load Pattern Detail — table with total statements, AMP skew, estimated savings, load window duration
-    3. Severity & Recommendation — severity level, TPT recommendation, Load Isolation note
-    4. Action Taken — what was logged to hm_bulk_load_job_status
-    5. Downstream Impact — what this means for Claims Analytics and OA data consumers
-    6. Handoff — run the hm-oa-integrity skill with trigger BULK_LOAD_COMPLETE and the most recent etl_run_id from hm_vt_summary
+    Structured summary with: (1) Detection summary with scale; (2) Load pattern table (statements, AMP skew, estimated savings, window); (3) Severity and TPT FastLoad recommendation with Load Isolation note; (4) Job action logged to hm_bulk_load_job_status; (5) Downstream impact; (6) Handoff to hm-oa-integrity with BULK_LOAD_COMPLETE and the latest etl_run_id.
 ---
 
 # Bulk Load Consolidation for Teradata Claims Pipeline
