@@ -1,4 +1,6 @@
 -- OUTCOME ADVISOR PROGRAM INTEGRITY SQL TOOLKIT
+-- Ratios cast to DECIMAL(18,6) before dividing: Teradata keeps the operands' scale, so
+-- INTEGER or DECIMAL(x,2) division truncates pct_change (e.g. -0.77 becomes -1 or 0).
 -- Run all queries via teradata MCP base_readQuery against DATA_SCIENTIST schema
 -- Purpose: Seven named queries for data quality monitoring and alert generation
 
@@ -51,7 +53,7 @@ SELECT
     curr.cost_per                                               AS current_cost_per,
     prev.cost_per                                               AS prior_cost_per,
     curr.cost_per - prev.cost_per                               AS cost_change,
-    ROUND((curr.cost_per - prev.cost_per) / NULLIF(prev.cost_per, 0), 4) AS pct_change,
+    ROUND(CAST(curr.cost_per - prev.cost_per AS DECIMAL(18,6)) / NULLIF(CAST(prev.cost_per AS DECIMAL(18,6)), 0), 4) AS pct_change,
     r.pct_change_alert_thresh                                   AS alert_threshold,
     r.severity_level,
     r.finance_owner,
@@ -70,7 +72,7 @@ LEFT JOIN DATA_SCIENTIST.hm_oa_program_rules r
  AND r.metric_name = 'cost_per'
  AND r.active_flag = 1
 WHERE curr.run_date = (SELECT MAX(run_date) FROM DATA_SCIENTIST.hm_vt_summary)
-  AND ABS((curr.cost_per - prev.cost_per) / NULLIF(prev.cost_per, 0)) > r.pct_change_alert_thresh
+  AND ABS(CAST(curr.cost_per - prev.cost_per AS DECIMAL(18,6)) / NULLIF(CAST(prev.cost_per AS DECIMAL(18,6)), 0)) > r.pct_change_alert_thresh
 ORDER BY ABS(curr.cost_per - prev.cost_per) DESC;
 
 -- ============================================================================
@@ -86,8 +88,8 @@ SELECT
     curr.participants                                            AS current_participants,
     prev.participants                                            AS prior_participants,
     curr.participants - prev.participants                        AS participant_change,
-    ROUND((curr.participants - prev.participants) /
-          NULLIF(prev.participants, 0), 4)                       AS pct_change,
+    ROUND(CAST(curr.participants - prev.participants AS DECIMAL(18,6)) /
+          NULLIF(CAST(prev.participants AS DECIMAL(18,6)), 0), 4)                       AS pct_change,
     r.pct_change_alert_thresh,
     r.business_owner,
     curr.etl_run_id
