@@ -28,6 +28,7 @@ All data is synthetic. Use this skill first, then load the one skill it names.
 
 ## Shared rules
 
+- The `tool_*` names are Teradata macros in `Y12_ACCESS`, run as SQL with `EXEC Y12_ACCESS.<macro>(...)` through the `teradata` tool group, not MCP tools.
 - Use only tool results; never invent a number.
 - Report co-occurrence, never cause.
 - If a macro is refused or unavailable, say so in one sentence and stop; do not look for another route.

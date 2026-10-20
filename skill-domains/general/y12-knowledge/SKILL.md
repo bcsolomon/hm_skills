@@ -8,6 +8,16 @@ metadata:
 
 # Y-12 Knowledge
 
+## How to Call the Macros
+
+The `tool_*` names are **Teradata macros in the database `Y12_ACCESS`, not MCP tools**. Do not search the tool list for them and do not stop because no tool has that name. Run each one as SQL through the `teradata` tool group's query tool, as a single statement with literal arguments:
+
+```sql
+EXEC Y12_ACCESS.<macro_name>(<arguments>);
+```
+
+Use `EXEC` (not `EXECUTE MACRO`). Dates are `DATE 'YYYY-MM-DD'`. Run one statement per call and show the returned rows.
+
 ## When to Use
 
 - "What do our procedures say about vibration alerts?"
@@ -44,7 +54,7 @@ EXEC Y12_ACCESS.tool_docs_search_t1('vibration');
 
 - Use only values returned by a tool in this conversation. A made-up number in an engineering summary is worse than a gap.
 - Report co-occurrence, never cause. The data is synthetic and shows events in the same period; it does not show one thing driving another.
-- If a macro is missing or a call is refused, say so in one sentence naming it, then stop. Do not look for another way to get the information: the refusal is the control.
+- If an EXEC returns a permission error or "does not exist", say so in one sentence naming the macro, then stop. Do not look for another way to get the information: the refusal is the control.
 - All data is synthetic. Say so if asked.
 
 ## References
