@@ -1,6 +1,6 @@
 ---
 name: y12-audit
-description: 'Reports the synthetic surrogate call log read-only: who called the model, when, with what inputs, what came back, and which calls were flagged outside the envelope. Use when asked to show surrogate calls, the audit log, who ran the model, or flagged calls. Never changes or clears the log and never describes anyone's intent.'
+description: 'Reports the synthetic surrogate call log read-only: who called the model, when, with what inputs, what came back, and which calls were flagged outside the envelope. Use when asked to show surrogate calls, the audit log, who ran the model, or flagged calls. Never changes or clears the log and never describes intent.'
 metadata:
   author: brian.solomon
   version: "1.0"
