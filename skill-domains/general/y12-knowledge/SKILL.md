@@ -32,7 +32,7 @@ The documents you can see depend on your tier; report only what the search retur
 
 ## Procedure: Search and Quote
 
-1. Turn the question into ONE plain keyword (for example `D-3`, `vibration`, `bore`, `design review`). Never pass the user's whole sentence: the macro matches the text literally, so a phrase like "procedures about vibration alerts" matches nothing; pass `vibration` instead.
+1. Turn the question into ONE plain keyword (for example `D-3`, `vibration`, `bore`, `inspection`). Never pass the user's whole sentence: the macro matches the text literally, so a phrase like "procedures about vibration alerts" matches nothing; pass `vibration` instead.
 2. Call `tool_docs_search_<tier>` with that keyword. If it returns nothing, try one shorter or alternative keyword, at most twice.
 3. Return document id, title and section for every chunk the search returns (up to ten), grouped by document.
 4. Quote the relevant sentence exactly. Do not paraphrase a requirement or threshold.
