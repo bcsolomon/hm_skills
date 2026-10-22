@@ -18,6 +18,7 @@ All data is synthetic. Use this skill first, then load the one skill it names.
 | Procedures, specifications, guidelines | `y12-knowledge` |
 | Predicted stress or frequency for a configuration | `y12-surrogate` |
 | Who called the model, flagged calls | `y12-audit` |
+| A chart or dashboard of agent activity or model usage | `y12-audit-dashboard` |
 
 ## Multi-skill tasks
 
