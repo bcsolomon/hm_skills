@@ -11,3 +11,16 @@
 | ood_flag | Y if outside the validated envelope, otherwise N |
 
 Rows are written by the surrogate macro, never by this agent.
+
+# Agent Call Log Columns
+
+| Column | Meaning |
+|---|---|
+| call_id | Sequence number |
+| call_ts | Time of the call |
+| db_user | Database user that ran the macro |
+| macro_name | Which tool macro was called |
+| arguments | The arguments passed, as text |
+| tier | t1 or t2 |
+
+Rows are written by each tool macro after it returns its result. A request that never reaches a macro (for example a refusal) leaves no row.

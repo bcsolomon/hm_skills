@@ -1,6 +1,6 @@
 ---
 name: y12-audit
-description: 'Reports the synthetic surrogate call log read-only: who called the model, when, with what inputs, what came back, and which calls were flagged outside the envelope. Use when asked to show surrogate calls, the audit log, who ran the model, or flagged calls. Never changes or clears the log and never describes intent.'
+description: 'Reports the synthetic audit logs read-only: every agent macro call (time, database user, macro, arguments) and the surrogate model calls with inputs, outputs and flags. Use when asked to show agent calls, all calls today, the audit log, who ran the model, or flagged calls. Never changes or clears the logs and never describes intent.'
 metadata:
   author: brian.solomon
   version: "1.0"
@@ -22,12 +22,13 @@ Use `EXEC` (not `EXECUTE MACRO`). Dates are `DATE 'YYYY-MM-DD'`. Run one stateme
 
 - "Show today's surrogate calls"
 - Which calls were flagged outside the envelope; who ran the model
+- "Show all agent calls today"; which macros were called, by which database user, with what arguments
 
 Do NOT use for: changing or clearing the log, tool-level denials (those appear on the platform dashboards), describing intent.
 
 ## Core Concepts
 
-The log has one row per surrogate call. See [log columns](./references/log-columns.md). This agent is read-only and belongs to the audit role.
+Two logs exist. The agent call log has one row per macro call made by any agent (time, database user, macro, arguments, tier). The surrogate log has one row per model call with inputs, prediction, interval and flag. See [log columns](./references/log-columns.md). This agent is read-only and belongs to the audit role.
 
 ## Procedure: Report Calls for a Period
 
@@ -38,6 +39,18 @@ The log has one row per surrogate call. See [log columns](./references/log-colum
 
 ```sql
 EXEC Y12_ACCESS.tool_audit_surrogate_log(TIMESTAMP '2026-10-22 00:00:00');
+```
+
+## Procedure: Report All Agent Calls
+
+1. Default the start to midnight today (`TIMESTAMP 'YYYY-MM-DD 00:00:00'`).
+2. Call `tool_audit_all_calls`.
+3. Show a table: time, database user, macro, arguments, tier.
+4. Add one line: total calls, number per macro, distinct database users.
+5. If asked whether a request was refused, say that refusals which never became a macro call are not in this log; they appear in the platform's chat history and governance views.
+
+```sql
+EXEC Y12_ACCESS.tool_audit_all_calls(TIMESTAMP '2026-10-22 00:00:00');
 ```
 
 ## Common Errors
