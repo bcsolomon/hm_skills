@@ -44,13 +44,14 @@ EXEC Y12_ACCESS.tool_audit_surrogate_log(TIMESTAMP '2026-10-22 00:00:00');
 ## Procedure: Report All Agent Calls
 
 1. Default the start to midnight today (`TIMESTAMP 'YYYY-MM-DD 00:00:00'`).
-2. Call `tool_audit_all_calls`.
-3. Show a table: time, database user, macro, arguments, tier.
-4. Add one line: total calls, number per macro, distinct database users.
+2. Call `tool_audit_all_calls` for the rows and `tool_audit_summary` for the counts.
+3. Show a table of the rows: time (call it "database time" and do not state a time zone), database user, macro, arguments, tier.
+4. For the summary line and the per-macro counts, use only the numbers returned by `tool_audit_summary`: total calls, calls per macro and tier, distinct database users. Never count rows yourself.
 5. If asked whether a request was refused, say that refusals which never became a macro call are not in this log; they appear in the platform's chat history and governance views.
 
 ```sql
 EXEC Y12_ACCESS.tool_audit_all_calls(TIMESTAMP '2026-10-22 00:00:00');
+EXEC Y12_ACCESS.tool_audit_summary(TIMESTAMP '2026-10-22 00:00:00');
 ```
 
 ## Common Errors
