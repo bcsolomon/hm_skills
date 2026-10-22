@@ -34,8 +34,8 @@ The documents you can see depend on your tier; report only what the search retur
 
 1. Turn the question into ONE plain keyword (for example `D-3`, `vibration`, `bore`, `inspection`). Never pass the user's whole sentence: the macro matches the text literally, so a phrase like "procedures about vibration alerts" matches nothing; pass `vibration` instead.
 2. Call `tool_docs_search_<tier>` with that keyword. If it returns nothing, try one shorter or alternative keyword, at most twice.
-3. Return document id, title and section for every chunk the search returns (up to ten), grouped by document.
-4. Quote the relevant sentence exactly. Do not paraphrase a requirement or threshold.
+3. The macro returns every chunk of each matching document, with `matched` = `Y` on the chunks that contain the keyword and `N` on the rest. Group the results by document and lead with the `Y` chunks, but read all chunks of a document: the `N` chunks often hold the decision or the detail that answers the question.
+4. Quote the relevant sentences exactly, with document id, title and section. Do not paraphrase a requirement, threshold or decision.
 5. If nothing matches, say so and suggest another keyword.
 
 ```sql
