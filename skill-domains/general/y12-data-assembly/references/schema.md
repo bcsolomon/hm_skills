@@ -10,16 +10,16 @@
 | Assets | A-03-01 (SS-03), A-07-01 and A-07-02 (SS-07) |
 | Part | P-701, revisions A (2026-01-05), B (2026-03-10), C (2026-07-20) |
 | Characteristic | D-3, nominal 25.000 mm, tolerance 24.950 to 25.050 mm |
-| Data window | 2026-01-01 to 2026-09-30 (one stray D-3 reading on 2026-10-01 at tier 2) |
+| Data window | 2026-01-01 to about 2026-10-01 |
 
 ## Tiers
 
 | Tier | Macro suffix | Sees |
 |---|---|---|
-| Tier 1 | `_t1` | Broadly accessible rows only (for example 2,552 of 3,000 work orders; 22 of 29 nonconformances; 5 of 6 documents) |
-| Tier 2 | `_t2` | All rows, plus revision rationale and the signature library |
+| Tier 1 | `_t1` | The rows available to tier 1 |
+| Tier 2 | `_t2` | The rows available to tier 2 |
 
-Tier is fixed per agent. The model never chooses it.
+Tier is fixed per agent. The model never chooses it. Report only what your own macros return; never compare with, or speculate about, what another tier would see.
 
 ## Columns returned
 

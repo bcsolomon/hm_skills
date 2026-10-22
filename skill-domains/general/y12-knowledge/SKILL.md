@@ -28,13 +28,13 @@ Do NOT use for: summarising measurements or sensors (use `y12-data-assembly`), p
 
 ## Core Concepts
 
-Six synthetic documents exist; a tier-1 agent sees five of them and never learns about the sixth. See [documents](./references/documents.md). Search is keyword-based, not semantic.
+The documents you can see depend on your tier; report only what the search returns. See [documents](./references/documents.md) for examples. Search is keyword-based, not semantic and matches the text you pass literally.
 
 ## Procedure: Search and Quote
 
-1. Turn the question into one or two plain keywords (for example `D-3`, `vibration`, `bore`).
-2. Call `tool_docs_search_<tier>` with one keyword at a time.
-3. Return document id, title and section for the best three matches.
+1. Turn the question into ONE plain keyword (for example `D-3`, `vibration`, `bore`, `design review`). Never pass the user's whole sentence: the macro matches the text literally, so a phrase like "procedures about vibration alerts" matches nothing; pass `vibration` instead.
+2. Call `tool_docs_search_<tier>` with that keyword. If it returns nothing, try one shorter or alternative keyword, at most twice.
+3. Return document id, title and section for every chunk the search returns (up to ten), grouped by document.
 4. Quote the relevant sentence exactly. Do not paraphrase a requirement or threshold.
 5. If nothing matches, say so and suggest another keyword.
 

@@ -62,7 +62,6 @@ EXEC Y12_ACCESS.tool_plm_revisions_t1('P-701');
 |---|---|---|
 | Empty result | Subsystem id or date format wrong | Use `'SS-07'` and `DATE 'YYYY-MM-DD'` |
 | Permission error on a macro | The agent's tier cannot run it | Say so in one sentence and stop |
-| Tier-2 counts differ from tier 1 | Tier 2 sees more rows | Expected; quote the numbers from the tool you used |
 | User asks why a revision was made | Needs the tier-2 rationale macro | If you do not have it, say so and stop |
 
 ## Rules (and why)

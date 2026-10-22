@@ -1,6 +1,6 @@
 # Worked Example: What Happened on Subsystem 7 (synthetic)
 
-> Numbers below were verified against the demo database on 2026-10-20. Tier 1 unless stated.
+> Illustrative numbers from the demo database. Always report the numbers your own macros return; they are the only source.
 
 ## Manufacturing: D-3 on SS-07 (tolerance 24.950 to 25.050 mm)
 
@@ -10,11 +10,9 @@
 | August | 184 | 25.014 | 0 |
 | September | 181 | 25.036 | 22 |
 
-Tier 2 sees more rows: September 215 readings, mean 25.037, 29 out of tolerance.
-
 ## Nonconformances
 
-22 records at tier 1 (29 at tier 2), all D-3 on SS-07, all in September.
+All D-3 on SS-07, all in September (count from the macro).
 
 ## Maintenance: A-07-01 vibration
 
