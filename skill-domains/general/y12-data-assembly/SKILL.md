@@ -1,6 +1,6 @@
 ---
 name: y12-data-assembly
-description: 'Assembles a dated cross-system timeline for a manufacturing subsystem from synthetic MES, PLM and maintenance data: D-3 drift, out-of-tolerance readings, nonconformances, vibration trend, alerts, repairs and part revisions. Use when asked what happened on Subsystem 7 or SS-07, D-3 drift, tolerance, A-07-01 vibration, or P-701 revisions. Reports co-occurrence, never cause.'
+description: 'Assembles a dated cross-system timeline for a manufacturing subsystem from synthetic MES, PLM and maintenance data: D-3 drift, out-of-tolerance readings, nonconformances, vibration trend, alerts, repairs and part revisions. Use when asked what happened in machining cell 7 (also called Subsystem 7 or SS-07), D-3 drift, tolerance, A-07-01 vibration, or P-701 revisions. Reports co-occurrence, never cause.'
 metadata:
   author: brian.solomon
   version: "1.0"
@@ -20,16 +20,16 @@ Use `EXEC` (not `EXECUTE MACRO`). Dates are `DATE 'YYYY-MM-DD'`. Run one stateme
 
 ## When to Use
 
-- "Pull together what happened on Subsystem 7 since July"
+- "Pull together what happened in machining cell 7 since July"
 - Questions about D-3 drift, out-of-tolerance readings or nonconformances
-- Vibration trend, maintenance alerts or repairs on A-07-01 and neighbours
+- Vibration trend, maintenance alerts or repairs on machining center 1 (A-07-01) and its neighbour
 - P-701 revision history
 
 Do NOT use for: procedures and specifications (use `y12-knowledge`), predictions (use `y12-surrogate`), the audit log (use `y12-audit`), or explaining why something happened.
 
 ## Core Concepts
 
-See [schema](./references/schema.md) for subsystems, assets, the part, the D-3 tolerance and the tier differences. You act for one tier, fixed per agent: use macros ending in that suffix (`_t1` or `_t2`).
+See [schema](./references/schema.md) for the machining cells, machines, the part, the D-3 tolerance and the tier differences. Use plain names together with the IDs when you reply: machining cell 7 (SS-07), machining center 1 (A-07-01), machining center 2 (A-07-02), the housing (P-701). You act for one tier, fixed per agent: use macros ending in that suffix (`_t1` or `_t2`).
 
 ## Procedure: Assemble a Subsystem Timeline
 
@@ -78,7 +78,7 @@ EXEC Y12_ACCESS.tool_plm_revisions_t1('P-701');
 
 - [Schema](./references/schema.md) — entities, tiers, columns returned
 - [Macros](./references/macros.md) — each macro, its arguments and a worked call
-- [Worked example](./references/worked-example.md) — the Subsystem 7 walk-through with the expected numbers
+- [Worked example](./references/worked-example.md) — the machining cell 7 walk-through with the expected numbers
 
 ## Templates
 

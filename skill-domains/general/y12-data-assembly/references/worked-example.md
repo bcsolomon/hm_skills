@@ -1,8 +1,8 @@
-# Worked Example: What Happened on Subsystem 7 (synthetic)
+# Worked Example: What Happened in Machining Cell 7 (synthetic)
 
 > Illustrative numbers from the demo database. Always report the numbers your own macros return; they are the only source.
 
-## Manufacturing: D-3 on SS-07 (tolerance 24.950 to 25.050 mm)
+## Production and quality: housing bore D-3 in cell 7 (SS-07), tolerance 24.950 to 25.050 mm
 
 | Month | Readings | Mean D-3 (mm) | Out of tolerance |
 |---|---|---|---|
@@ -14,7 +14,7 @@
 
 All D-3 on SS-07, all in September (count from the macro).
 
-## Maintenance: A-07-01 vibration
+## Maintenance: machining center 1 (A-07-01) vibration
 
 | Month | Avg RMS | Avg peak Hz |
 |---|---|---|

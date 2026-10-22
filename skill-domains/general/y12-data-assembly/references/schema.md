@@ -6,10 +6,10 @@
 
 | Item | Values |
 |---|---|
-| Subsystems | SS-03, SS-07 |
-| Assets | A-03-01 (SS-03), A-07-01 and A-07-02 (SS-07) |
-| Part | P-701, revisions A (2026-01-05), B (2026-03-10), C (2026-07-20) |
-| Characteristic | D-3, nominal 25.000 mm, tolerance 24.950 to 25.050 mm |
+| Machining cells | SS-03 (cell 3), SS-07 (cell 7, also called Subsystem 7) |
+| Machines | A-03-01 (machining center in cell 3); A-07-01 (machining center 1) and A-07-02 (machining center 2) in cell 7 |
+| Part | P-701, a machined housing; revisions A (2026-01-05), B (2026-03-10), C (2026-07-20) |
+| Characteristic | D-3, the housing bore diameter; nominal 25.000 mm, tolerance 24.950 to 25.050 mm |
 | Data window | 2026-01-01 to about 2026-10-01 |
 
 ## Tiers

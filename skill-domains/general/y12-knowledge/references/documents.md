@@ -4,7 +4,7 @@
 
 | Id | Title | Type |
 |---|---|---|
-| DOC-001 | Subsystem 7 Inspection Procedure | procedure |
+| DOC-001 | Cell 7 Bore Inspection Work Instruction | work instruction |
 | DOC-002 | Vibration Monitoring Guideline | guideline |
 | DOC-003 | Bore Finish Specification Notes | spec note |
 | DOC-004 | Nonconformance Handling | procedure |

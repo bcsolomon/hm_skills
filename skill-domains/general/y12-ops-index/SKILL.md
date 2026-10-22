@@ -1,6 +1,6 @@
 ---
 name: y12-ops-index
-description: 'Routes Y-12 demo questions to the right synthetic-data skill. Use FIRST for Subsystem 7, D-3, vibration, P-701 revisions, nonconformances, procedures, what happens if, surrogate predictions, or the audit log. Routes to y12-data-assembly, y12-knowledge, y12-surrogate or y12-audit.'
+description: 'Routes Y-12 demo questions to the right synthetic-data skill. Use FIRST for machining cell 7 (Subsystem 7), D-3, vibration, P-701 revisions, nonconformances, procedures, what happens if, surrogate predictions, or the audit log. Routes to y12-data-assembly, y12-knowledge, y12-surrogate or y12-audit.'
 metadata:
   author: brian.solomon
   version: "1.0"
